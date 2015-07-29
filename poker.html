@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>卡牌翻转效果</title>
+    <link rel="shortcut icon" type="image/ico" href="images/logo.ico">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+    .poker {
+        position: relative;
+        width: 253px;
+        height: 352px;
+        display: inline-block;
+        margin: 15px 13px;
+        cursor: pointer;
+    }
+    
+    .poker>div {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        transition: all 1s ease;
+        -webkit-transition: all 1s ease;
+    }
+    
+    .poker .frontface {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-repeat: no-repeat;
+        background-image: url('images/pokerbg.jpg');
+        background-position: -174px -445px;
+    }
+    
+    .poker.active .frontface {
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+    }
+    
+    .poker .backface {
+        position: relative;
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+    }
+    
+    .poker.active .backface {
+        transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+    }
+    
+    .p1 .backface {
+        background-image: url('images/poker1.jpg');
+        background-position: -32px -8px;
+    }
+    
+    .p2 .backface {
+        background-image: url('images/poker1.jpg');
+        background-position: -319px -8px;
+    }
+    
+    .p3 .backface {
+        background-image: url('images/poker1.jpg');
+        background-position: -32px -446px;
+    }
+    
+    .p4 .backface {
+        background-image: url('images/poker1.jpg');
+        background-position: -319px -446px;
+    }
+    .p5 .backface {
+        background-image: url('images/poker2.jpg');
+        background-position: -32px -8px;
+    }
+    
+    .p6 .backface {
+        background-image: url('images/poker2.jpg');
+        background-position: -319px -8px;
+    }
+    
+    .p7 .backface {
+        background-image: url('images/poker2.jpg');
+        background-position: -32px -446px;
+    }
+    
+    .p8 .backface {
+        background-image: url('images/poker2.jpg');
+        background-position: -319px -446px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="poker p1">
+                <div class="frontface"></div>
+                <div class="backface"></div>
+            </div>
+            <div class="poker p2">
+                <div class="frontface"></div>
+                <div class="backface"></div>
+            </div>
+            <div class="poker p3">
+                <div class="frontface"></div>
+                <div class="backface"></div>
+            </div>
+            <div class="poker p4">
+                <div class="frontface"></div>
+                <div class="backface"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="poker p5">
+                <div class="frontface"></div>
+                <div class="backface"></div>
+            </div>
+            <div class="poker p6">
+                <div class="frontface"></div>
+                <div class="backface"></div>
+            </div>
+            <div class="poker p7">
+                <div class="frontface"></div>
+                <div class="backface"></div>
+            </div>
+            <div class="poker p8">
+                <div class="frontface"></div>
+                <div class="backface"></div>
+            </div>
+        </div>
+    </div>
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script>
+    $(function() {
+        $('.poker').click(function(event) {
+            var that = $(this);
+            that.toggleClass('active');
+        });
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "lottery",
+  "version": "0.0.0",
+  "main": "index.html",
+  "keywords": [
+    "velocity"
+  ],
+  "authors": [
+    "Seven_Tao"
+  ],
+  "license": "MIT",
+  "homepage": "http://areyouse7en.github.io/lottery/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1",
+    "velocity": "~1.2.2",
+    "fancybox": "~2.1.5",
+    "bootstrap": "~3.3.5"
+  }
+}
