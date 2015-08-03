@@ -3,7 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>卡牌翻转效果</title>
+    <title>卡牌翻转效果-Seven_Tao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 ,user-scalable=no ,minimal-ui">
+    <meta name="description" content="卡牌翻转效果-Seven_Tao">
+    <meta name="keywords" content="卡牌翻转效果-Seven_Tao">
     <link rel="shortcut icon" type="image/ico" href="images/logo.ico">
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
     <script>
@@ -18,10 +21,10 @@
     <style>
     .poker {
         position: relative;
-        width: 253px;
-        height: 352px;
+        width: 213px;
+        height: 293px;
         display: inline-block;
-        margin: 15px 13px;
+        margin: 40px 55px;
         cursor: pointer;
     }
     
@@ -31,10 +34,9 @@
         background-repeat: no-repeat;
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
-        -ms-backface-visibility: hidden;
         transform-style: preserve-3d;
         -webkit-transform-style: preserve-3d;
-        -ms-transform-style: preserve-3d;
+        background-image: url('images/poker.png');
     }
     
     .poker .frontface {
@@ -42,22 +44,27 @@
         left: 0;
         top: 0;
         background-repeat: no-repeat;
-        background-image: url('images/poker.jpg');
-        background-position: -174px -445px;
+        background-position: -287px -354px;
     }
     
     .poker .backface {
         position: relative;
     }
     
-    .poker .backface {
-        background-image: url('images/poker.jpg');
-        background-position: -32px -8px;
+    .poker.gift1 .backface {
+        background-position: -18px -26px;
     }
     
-    .poker.lucky .backface {
-        background-image: url('images/poker.jpg');
-        background-position: -319px -8px;
+    .poker.gift2 .backface {
+        background-position: -287px -26px;
+    }
+    
+    .poker.gift3 .backface {
+        background-position: -555px -26px;
+    }
+    
+    .poker.gift4 .backface {
+        background-position: -18px -354px;
     }
     </style>
 </head>
@@ -81,16 +88,6 @@
                 <div class="frontface"></div>
                 <div class="backface"></div>
             </div>
-        </div>
-        <div class="row">
-            <div class="poker">
-                <div class="frontface"></div>
-                <div class="backface"></div>
-            </div>
-            <div class="poker">
-                <div class="frontface"></div>
-                <div class="backface"></div>
-            </div>
             <div class="poker">
                 <div class="frontface"></div>
                 <div class="backface"></div>
@@ -105,21 +102,56 @@
     <script src="libs/velocity/velocity.min.js"></script>
     <script>
     $(function() {
-        $('.poker .backface').velocity({
-            rotateY: '180deg'
-        }, 0)
+        var backfaceSupport = typeof(document.body.style.backfaceVisibility) == 'string';
+
+        function init() {
+            if (backfaceSupport) {
+                $('.poker .backface').velocity({
+                    rotateY: '180deg'
+                }, 0);
+            } else {
+                $('.poker .backface').velocity({
+                    opacity: 0
+                }, 0);
+            };
+        }
+
+        init();
 
         $('.poker').click(function(event) {
             var that = $(this);
             var frontface = $('.frontface', that),
                 backface = $('.backface', that);
 
-            frontface.velocity({
-                rotateY: '180deg'
-            });
-            backface.velocity({
-                rotateY: '0deg'
-            });
+
+            var arr = ["gift1", "gift2", "gift3", "gift4"];
+            var gift = arr[(new Date % arr.length)];
+            that.addClass(gift);
+
+            if (backfaceSupport) {
+                frontface.velocity({
+                    rotateY: '180deg'
+                });
+                backface.velocity({
+                    rotateY: '0deg'
+                }, {
+                    complete: function() {
+                        console.log('complete!');
+                    }
+                });
+            } else {
+                frontface.velocity({
+                    top: '-50%',
+                    opacity: 0
+                });
+                backface.velocity({
+                    opacity: 1
+                }, {
+                    complete: function() {
+                        console.log('complete!');
+                    }
+                });
+            };
         });
     })
     </script>
