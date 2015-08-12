@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯抽奖效果-Seven_Tao</title>
+    <meta name="description" content="跑马灯抽奖效果-Seven_Tao">
+    <meta name="keywords" content="跑马灯抽奖效果-Seven_Tao">
+    <link rel="shortcut icon" type="image/ico" href="images/logo.ico">
+    <script>
+    // 百度统计
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4ece74c2d9e1a3e0a705eb36e14998ee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    <link rel="stylesheet" href="libs/prism/prism.css">
+    <link rel="stylesheet" href="stylesheets/lottery.marquee.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="prizes">
+            <li class="p1">谢谢参与</li>
+            <li class="p2">10块现金红包</li>
+            <li class="p3">谢谢参与</li>
+            <li class="p4">100块现金红包</li>
+            <li class="p5">神秘大奖</li>
+            <li class="p6">谢谢参与</li>
+            <li class="p7">谢谢参与</li>
+            <li class="p8">200块现金红包</li>
+            <li class="p9">谢谢参与</li>
+            <li class="p10">谢谢参与</li>
+            <li class="p11">谢谢参与</li>
+            <li class="p12">谢谢参与</li>
+        </ul>
+        <div class="dashboard">
+            <a href="javascript:;" class="drawbtn">点我抽奖</a>
+        </div>
+    </div>
+    <pre>
+        <code class="language-javascript">
+
+            /**
+             * @param winId 中奖奖项序号
+             * @param round 跑的基础轮次
+             * @param time 动画时间
+             * @param activeClass 中奖高亮样式
+             * @param effect 动画曲线
+             * @param finish 结束动画后的回调函数
+             * @usage
+            **/
+
+            $('.prizes').lottery({
+                winId: Math.ceil(Math.random() * 12),
+                round: 5,
+                time: 5,
+                activeClass: 'active',
+                effect: 'Quad',
+                finish: function(){
+                    console.log('ok');
+                }
+            });
+        </code>
+    </pre>
+    <!-- 脚本 -->
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script src="js/lottery.marquee.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('.drawbtn').click(function() {
+            $('.prizes').lottery({
+                winId: Math.ceil(Math.random() * 12),
+                finish: function() {
+                    console.log('ok');
+                }
+            })
+        });
+    });
+    </script>
+    <!-- 以下脚本无关紧要 -->
+    <script src="libs/prism/prism.js"></script>
+    <script type="text/javascript">
+    </script>
+</body>
+
+</html>
